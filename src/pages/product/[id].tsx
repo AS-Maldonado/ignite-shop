@@ -9,7 +9,7 @@ interface ProductProps {
   id: string;
   name: string;
   imageUrl: string;
-  price: string;
+  price: number;
   priceId: string;
   description: string | null;
 }
@@ -22,6 +22,10 @@ export default function ProductPage({
   description,
 }: ProductProps) {
   const { isFallback } = useRouter();
+  const formatedPrice = new Intl.NumberFormat("pt-BR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(price);
 
   if (isFallback) {
     return <p>Loading...</p>;
@@ -53,7 +57,9 @@ export default function ProductPage({
       </div>
       <div className="flex flex-col">
         <h1 className="text-2xl text-gray300">{name}</h1>
-        <span className="mt-4 block text-2xl text-green300">{price}</span>
+        <span className="mt-4 block text-2xl text-green300">
+          R$ {formatedPrice}
+        </span>
         <p className="mt-7 text-md text-gray300">{description}</p>
 
         <button
@@ -95,10 +101,7 @@ export const getStaticProps: GetStaticProps<
       name: product.name,
       imageUrl: product.images[0],
       priceId: price.id,
-      price: new Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      }).format(price.unit_amount ? price.unit_amount / 100 : 0),
+      price: price.unit_amount ? price.unit_amount / 100 : 0,
       description: product.description,
     },
     revalidate: 60 * 60 * 1, //1 Hora

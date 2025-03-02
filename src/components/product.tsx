@@ -7,7 +7,7 @@ import { useContext } from "react";
 interface ProductProps {
   id: string;
   name: string;
-  price: string;
+  price: number;
   imageUrl: string;
   href: string;
 }
@@ -27,6 +27,11 @@ export default function Product({
     imageUrl,
   };
 
+  const formatedPrice = new Intl.NumberFormat("pt-BR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(price);
+
   return (
     <div className="relative">
       <Link
@@ -38,7 +43,9 @@ export default function Product({
       <footer className="absolute bottom-1 left-1 right-1 rounded-md flex items-center justify-between bg-[#202024] py-4 px-8">
         <div>
           <strong className="text-lg text-white">{name}</strong>
-          <span className="block text-xl font-bold text-green300">{price}</span>
+          <span className="block text-xl font-bold text-green300">
+            R$ {formatedPrice}
+          </span>
         </div>
         <button
           className="cursor-pointer bg-green500 p-3 rounded-md"
