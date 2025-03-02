@@ -42,13 +42,13 @@ export default function ProductPage({
 
   return (
     <div className="grid grid-cols-2 items-stretch gap-16 max-w-[1180px] m-auto">
-      <div className="product-img-container w-full max-w-[576px] h-[656px] rounded-lg p-1 flex items-center justify-center">
+      <div className="product-img-container w-full max-w-[476px] h-[556px] rounded-lg p-1 flex items-center justify-center">
         <Image
           src={imageUrl}
           alt={`${name} Image`}
           className="object-cover"
-          width={576}
-          height={656}
+          width={476}
+          height={556}
         />
       </div>
       <div className="flex flex-col">

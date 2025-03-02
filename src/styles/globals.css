@@ -153,7 +153,7 @@ button {
   max-width: calc(100vw - ((100vw - 1180px) / 2));
 }
 
-.home-container button {
+.home-container button:not(#add-to-cart) {
   display: none;
 }
 

@@ -6,7 +6,7 @@ interface HomeContainerProps {
 
 export default function HomeContainer({ children }: HomeContainerProps) {
   return (
-    <main className="home-container flex gap-12 ml-auto w-full">
+    <main className="home-container flex gap-12 ml-auto mt-20 w-full">
       {children}
     </main>
   );
